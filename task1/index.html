@@ -3,17 +3,17 @@
 <head></head>
 <body>
 
-  <div id="app">
+  <div id="app" v-cloak>
     <h2>Всего пользователей {{quantity}}</h2>
-    <table v-if='tableIsOpened'>
-      <tr v-for='person in list'>
+    <table v-if="tableIsOpened">
+      <tr v-for="(person, index) in list" key="index">
         <td>{{person.name}}</td>
         <td>{{person.lastName}}</td>
         <td>{{person.patronymic}}</td>
-        <td><img :src="person.img || 'avatars/anonymous.png'" alt='avatar' width="60" height="60"></td>
+        <td><img :src="person.img || 'avatars/anonymous.png'" alt="avatar" width="60" height="60"></td>
       </tr>
     </table>
-    <button type='button' @click='toggle'>{{buttonName}}</button>
+    <button type="button" @click="toggle">{{buttonName}}</button>
   </div>
   
 </body>
@@ -21,43 +21,42 @@
 <script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script>
   var app = new Vue({
-    el: '#app',
+    el: "#app",
     components: {},    
     data: function() {
       return {
-        title: 'Курс по Vue.js',
-        buttonName: 'Скрыть',
+        title: "Курс по Vue.js",
         tableIsOpened: true,
         list: [
           {
-            name: 'Leya',
-            lastName: 'Princess',
-            patronymic: 'The first',
-            img: 'avatars/girl.png'
+            name: "Leya",
+            lastName: "Princess",
+            patronymic: "The first",
+            img: "avatars/girl.png"
           },
           {
-            name: 'Ivan',
-            lastName: 'Ivanov',
-            patronymic: 'Ivanovich',
-            img: 'avatars/man1.png'
+            name: "Ivan",
+            lastName: "Ivanov",
+            patronymic: "Ivanovich",
+            img: "avatars/man1.png"
           },
           {
-            name: 'Petr',
-            lastName: 'Petrov',
-            patronymic: '',
-            img: ''
+            name: "Petr",
+            lastName: "Petrov",
+            patronymic: "",
+            img: ""
           },
           {
-            name: 'Alex',
-            lastName: 'Sidorov',
-            patronymic: 'Ivanovich',
-            img: 'avatars/man.png'
+            name: "Alex",
+            lastName: "Sidorov",
+            patronymic: "Ivanovich",
+            img: "avatars/man.png"
           },
           {
-            name: 'Ilya',
-            lastName: 'Efimov',
-            patronymic: 'Petrovich',
-            img: ''
+            name: "Ilya",
+            lastName: "Efimov",
+            patronymic: "Petrovich",
+            img: ""
           }
         ]
       };
@@ -66,17 +65,22 @@
     computed: {
       quantity(){
         return this.list.length;
+      },
+      buttonName(){
+        return this.tableIsOpened ? this.buttonName = "Скрыть" : this.buttonName = "Показать";
       }
     },
 
     methods: {
       toggle(){
         this.tableIsOpened = !this.tableIsOpened;
-        this.tableIsOpened ? this.buttonName = 'Скрыть' : this.buttonName = 'Показать';
-
       }
     }
   });
 </script>
-
+<style>
+  [v-cloak] {
+  display:none;
+}
+</style>
 </html>
