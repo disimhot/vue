@@ -3,7 +3,7 @@
 <head></head>
 <body>
 
-  <div id="app" v-cloak>
+  <div id="app">
     <h2>Всего пользователей {{quantity}}</h2>
     <table v-if="tableIsOpened">
       <tr v-for="(person, index) in list" key="index">
@@ -79,8 +79,6 @@
   });
 </script>
 <style>
-  [v-cloak] {
-  display:none;
-}
+
 </style>
 </html>
