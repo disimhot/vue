@@ -1,82 +1,81 @@
 <!DOCTYPE html>
 <html>
-<head></head>
-<body>
-
-  <div id="app" v-cloak>
-    <users-list v-if="tableIsOpened"
-      :list = "list"
+  <head></head>
+  <body>
+    <div id='app' v-cloak>
+      <users-list v-if='tableIsOpened'
+      :list = 'list'
       ></users-list>
-    <button type="button" @click="toggle">{{buttonName}}</button>
-  </div>
-  
-</body>
+      <button type='button' @click='toggle'>{{ buttonName }}</button>
+    </div>
+  </body>
 
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src='https://unpkg.com/vue/dist/vue.js'></script>
 
+  <script>
+    var app = new Vue({
+      el: '#app',
+      components: {
+        'users-list': UserList,
+       // 'user-form': 'UserForm'
+      },
+      data: function() {
+        return {
+          title: 'Курс по Vue.js',
+          tableIsOpened: true,
+          list: [
+            {
+              name: 'Leya',
+              lastName: 'Princess',
+              patronymic: 'The first',
+              img: 'avatars/girl.png'
+            },
+            {
+              name: 'Ivan',
+              lastName: 'Ivanov',
+              patronymic: 'Ivanovich',
+              img: 'avatars/man1.png'
+            },
+            {
+              name: 'Petr',
+              lastName: 'Petrov',
+              patronymic: '',
+              img: ''
+            },
+            {
+              name: 'Alex',
+              lastName: 'Sidorov',
+              patronymic: 'Ivanovich',
+              img: 'avatars/man.png'
+            },
+            {
+              name: 'Ilya',
+              lastName: 'Efimov',
+              patronymic: 'Petrovich',
+              img: ''
+            }
+          ]
+        };
+      },
 
-<script>
-  var app = new Vue({
-    el: "#app",
-    components: {
-      'users-list': UserList,
-      'user-form': userForm,
-    },  
-    data: function() {
-      return {
-        title: "Курс по Vue.js",
-        tableIsOpened: true,
-        list: [
-          {
-            name: "Leya",
-            lastName: "Princess",
-            patronymic: "The first",
-            img: "avatars/girl.png"
-          },
-          {
-            name: "Ivan",
-            lastName: "Ivanov",
-            patronymic: "Ivanovich",
-            img: "avatars/man1.png"
-          },
-          {
-            name: "Petr",
-            lastName: "Petrov",
-            patronymic: "",
-            img: ""
-          },
-          {
-            name: "Alex",
-            lastName: "Sidorov",
-            patronymic: "Ivanovich",
-            img: "avatars/man.png"
-          },
-          {
-            name: "Ilya",
-            lastName: "Efimov",
-            patronymic: "Petrovich",
-            img: ""
-          }
-        ]
-      };
-    },
-
-    computed: {
-      buttonName(){
-        return this.tableIsOpened ? this.buttonName = "Скрыть" : this.buttonName = "Показать";
-      }
-    },
-
-    methods: {
-      toggle(){
-        this.tableIsOpened = !this.tableIsOpened;
-      }
+      computed: {
+        buttonName() {
+          return this.tableIsOpened
+            ? (this.buttonName = 'Скрыть')
+            : (this.buttonName = 'Показать');
+        }
+      },
+      methods: {
+        toggle() {
+          this.tableIsOpened = !this.tableIsOpened;
+        }
+      },
+      watch: {}
+    });
+  </script>
+  <style>
+    [v-cloak] {
+      display: none;
     }
-  });
-</script>
-<style>
-[v-cloak] {
-display: none;
-} 
-</style>
+  </style>
 </html>
