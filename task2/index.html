@@ -1,81 +1,83 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
-  <body>
-    <div id='app' v-cloak>
-      <users-list v-if='tableIsOpened'
-      :list = 'list'
-      ></users-list>
-      <button type='button' @click='toggle'>{{ buttonName }}</button>
-    </div>
-  </body>
 
-  <script src='https://unpkg.com/vue/dist/vue.js'></script>
+<head></head>
 
-  <script>
-    var app = new Vue({
-      el: '#app',
-      components: {
-        'users-list': UserList,
-       // 'user-form': 'UserForm'
-      },
-      data: function() {
-        return {
-          title: 'Курс по Vue.js',
-          tableIsOpened: true,
-          list: [
-            {
-              name: 'Leya',
-              lastName: 'Princess',
-              patronymic: 'The first',
-              img: 'avatars/girl.png'
-            },
-            {
-              name: 'Ivan',
-              lastName: 'Ivanov',
-              patronymic: 'Ivanovich',
-              img: 'avatars/man1.png'
-            },
-            {
-              name: 'Petr',
-              lastName: 'Petrov',
-              patronymic: '',
-              img: ''
-            },
-            {
-              name: 'Alex',
-              lastName: 'Sidorov',
-              patronymic: 'Ivanovich',
-              img: 'avatars/man.png'
-            },
-            {
-              name: 'Ilya',
-              lastName: 'Efimov',
-              patronymic: 'Petrovich',
-              img: ''
-            }
-          ]
-        };
-      },
+<body>
+  <div id='app'>
+    <a href='./UserList.html'> Таблица пользователей
+      <users-list v-if='tableIsOpened' :list='list'></users-list>
+    </a>
+    <button type='button' @click='toggle'>{{ buttonName }}</button>
+  </div>
+</body>
 
-      computed: {
-        buttonName() {
-          return this.tableIsOpened
-            ? (this.buttonName = 'Скрыть')
-            : (this.buttonName = 'Показать');
-        }
-      },
-      methods: {
-        toggle() {
-          this.tableIsOpened = !this.tableIsOpened;
-        }
-      },
-      watch: {}
-    });
-  </script>
-  <style>
-    [v-cloak] {
-      display: none;
-    }
-  </style>
+<script src='https://unpkg.com/vue/dist/vue.js'></script>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    components: {
+      'users-list': UserList,
+      // 'user-form': 'UserForm'
+    },
+    data: function () {
+      return {
+        title: 'Курс по Vue.js',
+        tableIsOpened: true,
+        list: [{
+            name: 'Leya',
+            lastName: 'Princess',
+            patronymic: 'The first',
+            img: 'avatars/girl.png'
+          },
+          {
+            name: 'Ivan',
+            lastName: 'Ivanov',
+            patronymic: 'Ivanovich',
+            img: 'avatars/man1.png'
+          },
+          {
+            name: 'Petr',
+            lastName: 'Petrov',
+            patronymic: '',
+            img: ''
+          },
+          {
+            name: 'Alex',
+            lastName: 'Sidorov',
+            patronymic: 'Ivanovich',
+            img: 'avatars/man.png'
+          },
+          {
+            name: 'Ilya',
+            lastName: 'Efimov',
+            patronymic: 'Petrovich',
+            img: ''
+          }
+        ]
+      };
+    },
+
+    computed: {
+      buttonName() {
+        return this.tableIsOpened ?
+          'Скрыть' :
+          'Показать';
+      }
+    },
+    methods: {
+      toggle() {
+        this.tableIsOpened = !this.tableIsOpened;
+      }
+    },
+    watch: {}
+  });
+</script>
+<style>
+  [v-cloak] {
+    display: none;
+  }
+</style>
+
 </html>
