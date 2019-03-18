@@ -1,19 +1,92 @@
-<template>
+<!DOCTYPE html>
+<html>
 
-</template>
+<head></head>
 
+<body>
+  <div id="app" v-cloak>
+    <h2>Редактирование пользователя</h2>
+    <div v-for="(person, index) in list" :key="index">
+      <a href="#" @click="showForm(person)">{{person.name}}</a>
+    </div>
+    <users-form v-if="userDataOpened" :data="personData"></users-form>
+  </div>
+  <template id="users-component">
+    <div>
+      {{data}}
+    </div>
+  </template>
+</body>
+
+
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
 <script>
-  var UserForm = {
+  var userForm = {
     name: "UserForm",
-    template: template,
-    props: {},
-    computed: {
+    template: "#users-component",
+    props: {
+      data: {
+        type: Object,
+      }
+    },
+  };
 
+  var app = new Vue({
+    el: "#app",
+    components: {
+      "users-form": userForm,
+    },
+    data: function () {
+      return {
+        title: "Курс по Vue.js",
+        personData: {},
+        userDataOpened: false,
+        list: [{
+            name: "Leya",
+            lastName: "Princess",
+            patronymic: "The first",
+            img: "avatars/girl.png"
+          },
+          {
+            name: "Ivan",
+            lastName: "Ivanov",
+            patronymic: "Ivanovich",
+            img: "avatars/man1.png"
+          },
+          {
+            name: "Petr",
+            lastName: "Petrov",
+            patronymic: "",
+            img: ""
+          },
+          {
+            name: "Alex",
+            lastName: "Sidorov",
+            patronymic: "Ivanovich",
+            img: "avatars/man.png"
+          },
+          {
+            name: "Ilya",
+            lastName: "Efimov",
+            patronymic: "Petrovich",
+            img: ""
+          }
+        ]
+      };
     },
     methods: {
-
+      showForm(personData) {
+        this.userDataOpened = true;
+        this.personData = personData;
+      }
     },
-    mounted() {
-    }
-  };
+  });
 </script>
+
+<style>
+  [v-cloak] {
+    display: none;
+  }
+</style>
+
+</html>
