@@ -7,13 +7,13 @@
   <div id="app" v-cloak>
     <h2>Редактирование пользователя</h2>
     <div v-for="(person, index) in list" :key="index">
-      <a href="#" @click="showForm(person)">{{person.name}}</a>
+      <a href="#" @click.prevent="showForm(person)">{{person.name}}</a>
     </div>
-    <users-form v-if="userDataOpened" :data="personData"></users-form>
+    <users-form v-if="Object.keys(personData).length !== 0" :data="personData"></users-form>
   </div>
   <template id="users-component">
     <div>
-      {{data}}
+      {{personalData}}
     </div>
   </template>
 </body>
@@ -24,11 +24,23 @@
   var userForm = {
     name: "UserForm",
     template: "#users-component",
+    personalData: '',
     props: {
       data: {
         type: Object,
+        required: true
       }
     },
+    methods: {
+      show(data) {   
+          this.personalData = data;
+      },
+    },
+    mounted() {
+      if(this.data){
+        this.show(this.data);
+      }
+    }
   };
 
   var app = new Vue({
@@ -40,7 +52,6 @@
       return {
         title: "Курс по Vue.js",
         personData: {},
-        userDataOpened: false,
         list: [{
             name: "Leya",
             lastName: "Princess",
@@ -75,9 +86,8 @@
       };
     },
     methods: {
-      showForm(personData) {
-        this.userDataOpened = true;
-        this.personData = personData;
+      showForm(data) {
+        this.personData = data;
       }
     },
   });
