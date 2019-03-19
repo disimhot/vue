@@ -1,102 +1,105 @@
 <!DOCTYPE html>
 <html>
+  <head></head>
 
-<head></head>
-
-<body>
-  <div id="app" v-cloak>
-    <h2>Редактирование пользователя</h2>
-    <div v-for="(person, index) in list" :key="index">
-      <a href="#" @click.prevent="showForm(person)">{{person.name}}</a>
+  <body>
+    <div id="app" v-cloak>
+      <h2>Редактирование пользователя</h2>
+      <div v-for="(person, index) in list" :key="index">
+        <a href="#" @click.prevent="showForm(person)">{{ person.name }}</a>
+      </div>
+      <users-form v-if="personData" :userdata="personData"></users-form>
+      <div v-else>Пользователь не выбран</div>
     </div>
-    <users-form v-if="Object.keys(personData).length !== 0" :userdata="personData"></users-form>
-  </div>
-  <template id="users-component">
-    <div>
-      {{userdata}}
-    </div>
-  </template>
-</body>
+    <template id="users-component">
+      <div>
+        Был выбран:
+        <span>{{ userFields["name"] }}</span>
+        <span>{{ userFields["lastName"] }}</span>
+      </div>
+    </template>
+  </body>
 
-
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script>
-  var userForm = {
-    name: "UserForm",
-    template: "#users-component",
-    props: {
-      userdata: {
-        type: Object,
-        required: false
-      }
-    },
-    methods: {
-
-    },
-
-  };
-
-  var app = new Vue({
-    el: "#app",
-    components: {
-      "users-form": userForm,
-    },
-    data: function () {
-      return {
-        title: "Курс по Vue.js",
-        list: [],
-        personData: {},
-      };
-    },
-    methods: {
-      showForm(data) {
-        this.personData = data;
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script>
+    var userForm = {
+      name: "UserForm",
+      template: "#users-component",
+      userFields: [],
+      props: {
+        userdata: {
+          type: Object,
+          default: true
+        }
       },
-      loadUsers() {
-        let data = [{
-            name: "Leya",
-            lastName: "Princess",
-            patronymic: "The first",
-            img: "avatars/girl.png"
-          },
-          {
-            name: "Ivan",
-            lastName: "Ivanov",
-            patronymic: "Ivanovich",
-            img: "avatars/man1.png"
-          },
-          {
-            name: "Petr",
-            lastName: "Petrov",
-            patronymic: "",
-            img: ""
-          },
-          {
-            name: "Alex",
-            lastName: "Sidorov",
-            patronymic: "Ivanovich",
-            img: "avatars/man.png"
-          },
-          {
-            name: "Ilya",
-            lastName: "Efimov",
-            patronymic: "Petrovich",
-            img: ""
-          }
-        ]
-       return data;
+      computed: {
+        userFields() {
+          return this.userdata;
+        }
       }
-    },
-    mounted() {
-      this.list = this.loadUsers();
+    };
+
+    var app = new Vue({
+      el: "#app",
+      components: {
+        "users-form": userForm
+      },
+      data: function() {
+        return {
+          title: "Курс по Vue.js",
+          list: [],
+          personData: null
+        };
+      },
+      methods: {
+        showForm(data) {
+          this.personData = data;
+        },
+        loadUsers() {
+          let data = [
+            {
+              name: "Leya",
+              lastName: "Princess",
+              patronymic: "The first",
+              img: "avatars/girl.png"
+            },
+            {
+              name: "Ivan",
+              lastName: "Ivanov",
+              patronymic: "Ivanovich",
+              img: "avatars/man1.png"
+            },
+            {
+              name: "Petr",
+              lastName: "Petrov",
+              patronymic: "",
+              img: ""
+            },
+            {
+              name: "Alex",
+              lastName: "Sidorov",
+              patronymic: "Ivanovich",
+              img: "avatars/man.png"
+            },
+            {
+              name: "Ilya",
+              lastName: "Efimov",
+              patronymic: "Petrovich",
+              img: ""
+            }
+          ];
+          return data;
+        }
+      },
+      mounted() {
+        this.list = this.loadUsers();
+      }
+    });
+  </script>
+
+  <style>
+    [v-cloak] {
+      display: none;
     }
-  });
-</script>
-
-<style>
-  [v-cloak] {
-    display: none;
-  }
-</style>
-
+  </style>
 </html>

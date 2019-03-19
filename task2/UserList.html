@@ -1,112 +1,118 @@
 <!DOCTYPE html>
 <html>
+  <head></head>
 
-<head></head>
-
-<body>
-  <div id="app" v-cloak>
-    <users-list v-if="tableIsOpened" :list="list"></users-list>
-    <button type="button" @click="toggle">{{ buttonName }}</button>
-  </div>
-  <template id="users-component">
-    <div>
-        <h2>Всего пользователей {{quantity}}</h2>
+  <body>
+    <div id="app" v-cloak>
+      <users-list v-if="tableIsOpened" :list="list"></users-list>
+      <div v-else>Таблица скрыта</div>
+      <button type="button" @click="toggleUserListShowing">{{ nameUserListButton }}</button>
+    </div>
+    <template id="users-component">
+      <div>
+        <h2>Всего пользователей {{ quantity }}</h2>
         <table>
           <tr v-for="(person, index) in list" :key="index">
-            <td>{{person.name}}</td>
-            <td>{{person.lastName}}</td>
-            <td>{{person.patronymic}}</td>
-            <td><img :src="person.img || 'avatars/anonymous.png'" alt="avatar" width="60" height="60"></td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.lastName }}</td>
+            <td>{{ person.patronymic }}</td>
+            <td>
+              <img
+                :src="person.img || 'avatars/anonymous.png'"
+                alt="avatar"
+                width="60"
+                height="60"
+              />
+            </td>
           </tr>
         </table>
-    </div>
-  </template>
-</body>
+      </div>
+    </template>
+  </body>
 
-
-<script src="https://unpkg.com/vue/dist/vue.js"></script>
-<script>
-  var userList = {
-    name: "UserList",
-    template: "#users-component",
-    props: {
-      list: {
-        type: Array,
-      }
-    },
-    computed: {
-      quantity() {
-        return this.list.length;
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script>
+    var userList = {
+      name: "UserList",
+      template: "#users-component",
+      props: {
+        list: {
+          type: Array,
+          required: true
+        }
       },
-    },
-    mounted() {
-      console.log('Примонтировался компонент UsersList')
+      computed: {
+        quantity() {
+          return this.list.length;
+        }
+      },
+      mounted() {
+        console.log("Примонтировался компонент UsersList");
+      }
+    };
+
+    var app = new Vue({
+      el: "#app",
+      components: {
+        "users-list": userList
+      },
+      data: function() {
+        return {
+          title: "Курс по Vue.js",
+          tableIsOpened: true,
+          list: [],
+        };
+      },
+
+      computed: {
+        nameUserListButton() {
+          return this.tableIsOpened ? "Скрыть" : "Показать";
+        }
+      },
+      methods: {
+        toggleUserListShowing() {
+          this.tableIsOpened = !this.tableIsOpened;
+        }
+      },
+      mounted() {
+        this.list = [
+            {
+              name: "Leya",
+              lastName: "Princess",
+              patronymic: "The first",
+              img: "avatars/girl.png"
+            },
+            {
+              name: "Ivan",
+              lastName: "Ivanov",
+              patronymic: "Ivanovich",
+              img: "avatars/man1.png"
+            },
+            {
+              name: "Petr",
+              lastName: "Petrov",
+              patronymic: "",
+              img: ""
+            },
+            {
+              name: "Alex",
+              lastName: "Sidorov",
+              patronymic: "Ivanovich",
+              img: "avatars/man.png"
+            },
+            {
+              name: "Ilya",
+              lastName: "Efimov",
+              patronymic: "Petrovich",
+              img: ""
+            }]
+      }
+    });
+  </script>
+
+  <style>
+    [v-cloak] {
+      display: none;
     }
-  };
-
-  var app = new Vue({
-    el: "#app",
-    components: {
-      "users-list": userList,
-    },
-    data: function () {
-      return {
-        title: "Курс по Vue.js",
-        tableIsOpened: true,
-        list: [{
-            name: "Leya",
-            lastName: "Princess",
-            patronymic: "The first",
-            img: "avatars/girl.png"
-          },
-          {
-            name: "Ivan",
-            lastName: "Ivanov",
-            patronymic: "Ivanovich",
-            img: "avatars/man1.png"
-          },
-          {
-            name: "Petr",
-            lastName: "Petrov",
-            patronymic: "",
-            img: ""
-          },
-          {
-            name: "Alex",
-            lastName: "Sidorov",
-            patronymic: "Ivanovich",
-            img: "avatars/man.png"
-          },
-          {
-            name: "Ilya",
-            lastName: "Efimov",
-            patronymic: "Petrovich",
-            img: ""
-          }
-        ]
-      };
-    },
-
-    computed: {
-      buttonName() {
-        return this.tableIsOpened ?
-          "Скрыть" :
-          "Показать";
-      }
-    },
-    methods: {
-      toggle() {
-        this.tableIsOpened = !this.tableIsOpened;
-      }
-    },
-
-  });
-</script>
-
-<style>
-  [v-cloak] {
-    display: none;
-  }
-</style>
-
+  </style>
 </html>
