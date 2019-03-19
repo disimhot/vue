@@ -13,7 +13,7 @@
   </div>
   <template id="users-component">
     <div>
-      {{users}}
+      {{userdata}}
     </div>
   </template>
 </body>
@@ -24,11 +24,6 @@
   var userForm = {
     name: "UserForm",
     template: "#users-component",
-    data: function () {
-      return {
-        users: [],
-      }
-    },
     props: {
       userdata: {
         type: Object,
@@ -36,13 +31,9 @@
       }
     },
     methods: {
-      addUser(user) {
-        this.users.push(user);
-      }
+
     },
-    mounted() {
-      this.addUser(this.userdata);
-    }
+
   };
 
   var app = new Vue({
@@ -53,8 +44,16 @@
     data: function () {
       return {
         title: "Курс по Vue.js",
+        list: [],
         personData: {},
-        list: [{
+      };
+    },
+    methods: {
+      showForm(data) {
+        this.personData = data;
+      },
+      loadUsers() {
+        let data = [{
             name: "Leya",
             lastName: "Princess",
             patronymic: "The first",
@@ -85,13 +84,12 @@
             img: ""
           }
         ]
-      };
-    },
-    methods: {
-      showForm(data) {
-        this.personData = data;
+       return data;
       }
     },
+    mounted() {
+      this.list = this.loadUsers();
+    }
   });
 </script>
 
