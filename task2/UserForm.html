@@ -8,14 +8,14 @@
       <div v-for="(person, index) in list" :key="index">
         <a href="#" @click.prevent="showForm(person)">{{ person.name }}</a>
       </div>
-      <users-form v-if="personData" :userdata="personData"></users-form>
+      <users-form v-if="Object.keys(personData).length !== 0" :userdata="personData"></users-form>
       <div v-else>Пользователь не выбран</div>
     </div>
     <template id="users-component">
       <div>
         Был выбран:
-        <span>{{ userFields["name"] }}</span>
-        <span>{{ userFields["lastName"] }}</span>
+        <span>{{ userdata["name"] }}</span>
+        <span>{{ userdata["lastName"] }}</span>
       </div>
     </template>
   </body>
@@ -25,18 +25,12 @@
     var userForm = {
       name: "UserForm",
       template: "#users-component",
-      userFields: [],
       props: {
         userdata: {
           type: Object,
-          default: true
+          default: () => ({}),
         }
       },
-      computed: {
-        userFields() {
-          return this.userdata;
-        }
-      }
     };
 
     var app = new Vue({
