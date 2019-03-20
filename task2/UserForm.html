@@ -8,7 +8,7 @@
       <div v-for="(person, index) in list" :key="index">
         <a href="#" @click.prevent="showForm(person)">{{ person.name }}</a>
       </div>
-      <users-form v-if="Object.keys(personData).length !== 0" :userdata="personData"></users-form>
+      <users-form v-if="personData && Object.keys(personData).length!==0" :userdata="personData"></users-form>
       <div v-else>Пользователь не выбран</div>
     </div>
     <template id="users-component">
@@ -28,7 +28,7 @@
       props: {
         userdata: {
           type: Object,
-          default: () => ({}),
+        //  default: () => ({}),
         }
       },
     };
