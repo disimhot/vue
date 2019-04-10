@@ -1,18 +1,36 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+    <div>
+      <users-list :list="list" v-if="list.length"></users-list>
+      <div сlass="alert alert-warning" v-else>Загрузка</div>
+    </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import axios from 'axios'
+import UserList from '@/components/UserList.vue'
 
 export default {
-  name: "home",
+  name: 'Home',
   components: {
-    HelloWorld
+    'users-list': UserList
+  },
+  data: function() {
+    return {
+      list: []
+    }
+  },
+  mounted() {
+    this.loadUsers()
+  },
+  methods: {
+    loadUsers() {
+      axios.get('http://localhost:3004/users')
+        .then(response => response.data)
+        .then(users => {
+          this.list = users
+        })
+    }
   }
-};
+}
 </script>
+
