@@ -8,7 +8,8 @@ import Main from '@/views/Main.vue'
 Vue.use(Router)
 
 export default new Router({
-  routes: [{
+  routes: [
+    {
       path: '/',
       name: 'main',
       component: Main

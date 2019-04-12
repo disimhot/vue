@@ -11,9 +11,9 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(person, index) in list" :key='person.id'>
-              <td scope="row">{{ index }}</td>
-               <td>{{ person.name }}</td>
+            <tr v-for="person in list" :key='person.id'>
+              <td class="index" scope="row"></td>
+               <td>{{ person.firstName }}</td>
               <td>{{ person.lastName }}</td>
               <td>{{ person.email }}</td>
               <td>{{ person.address }}</td>
@@ -47,5 +47,15 @@ export default {
   }
 }
 </script>
+<style>
+table tr {
+    counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+    content: counter(rowNumber);
+}
+</style>
+
 
 

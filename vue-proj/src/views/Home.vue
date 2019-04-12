@@ -1,8 +1,10 @@
 <template>
     <div>
-      <users-list :list="list" v-if="list.length && haveData"></users-list>
-      <div class="alert alert-primary" role="alert" v-else-if="!haveData">Пользователей нет</div>
-      <div сlass="alert alert-warning" role="alert" v-else>Загрузка</div>
+      <div сlass="alert alert-warning" role="alert" v-if="loading">Загрузка</div>
+      <div v-else>
+        <div class="alert alert-primary" role="alert" v-if="usersListEmpty">Пользователей нет</div>
+        <users-list :list="list" v-else></users-list>
+      </div>
     </div>
 </template>
 
@@ -18,7 +20,12 @@ export default {
   data: function() {
     return {
       list: [],
-      haveData: false,
+      loading: true,
+    }
+  },
+  computed: {
+    usersListEmpty(){
+      return this.list.length === 0 ? true : false;
     }
   },
   mounted() {
@@ -29,12 +36,8 @@ export default {
       axios.get('http://localhost:3004/users')
         .then(response => response.data)
         .then(users => {
-          if(users.length !== 0) {
-            this.haveData = true;
             this.list = users;
-          } else {
-            this.haveData = false;
-          }
+            this.loading = false;
         })
       .catch(error => {
         console.log('Error ' + error)
