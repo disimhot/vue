@@ -1,21 +1,15 @@
 
 <template>
   <div>
-
     <nav class="navbar navbar-expand-md navbar-dark top bg-dark">
-      <a
-        class="navbar-brand"
-        href="#">Vue course app</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarCollapse"
-        aria-controls="navbarCollapse"
-        aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"/>
-      </button>
+      <router-link
+        tag="li"
+        to="/"
+        exact>
+        <a
+          class="navbar-brand"
+          href="#">Vue course app</a>
+      </router-link>
       <div
         class="collapse navbar-collapse"
         id="navbarCollapse">
@@ -23,8 +17,7 @@
           <router-link
             tag="li"
             to="/"
-            exact
-            active-class="active">
+            exact>
             <a
               class="nav-link"
               href="#">Главная</a>
@@ -32,8 +25,7 @@
           <router-link
             tag="li"
             to="/home"
-            exact
-            active-class="active">
+            exact>
             <a
               class="nav-link"
               href="#">Список пользователей</a>
@@ -41,8 +33,7 @@
           <router-link
             tag="li"
             to="/add"
-            exact
-            active-class="active">
+            exact>
             <a
               class="nav-link"
               href="#">Добавить пользователя</a>
@@ -50,7 +41,6 @@
         </ul>
       </div>
     </nav>
-
     <main
       id="app"
       role="main"
@@ -60,4 +50,11 @@
 
   </div>
 </template>
+
+<style scoped>
+li {
+  list-style-type: none;
+}
+</style>
+
 

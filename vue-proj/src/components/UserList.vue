@@ -6,12 +6,14 @@
               <th scope="col">#</th>
               <th scope="col">Name</th>
               <th scope="col">Last name</th>
+              <th scope="col">Email</th>
               <th scope="col">Address</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(person, index) in list" :key="index">
-              <td scope="row">{{ person.name }}</td>
+            <tr v-for="(person, index) in list" :key='person.id'>
+              <td scope="row">{{ index }}</td>
+               <td>{{ person.name }}</td>
               <td>{{ person.lastName }}</td>
               <td>{{ person.email }}</td>
               <td>{{ person.address }}</td>
@@ -19,7 +21,7 @@
           </tbody>
         </table>
         <footer>
-          <div class="footer" id="footer">
+          <div class="footer">
               <div class="container">
                   <div class="row">
                     <h6>Всего пользователей: {{ quantity }}</h6>
@@ -32,7 +34,6 @@
 <script>
 export default {
   name: 'UserList',
-  template: '#users-component',
   props: {
     list: {
       type: Array,
