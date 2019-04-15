@@ -24,7 +24,7 @@
           </router-link>
           <router-link
             tag="li"
-            to="/home"
+            to="/users"
             exact>
             <a
               class="nav-link"

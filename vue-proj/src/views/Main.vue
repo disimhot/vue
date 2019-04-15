@@ -1,6 +1,6 @@
 <template>
   <div class="starter-template">
-    <h1>Welcome to Vue project!</h1>
+    <h1 class="display-2">Welcome to Vue project!</h1>
     <p class="lead">You may find out the HTML document</p>
   </div>
 
