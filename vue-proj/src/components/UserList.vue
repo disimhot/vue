@@ -1,6 +1,13 @@
 <template>
-      <div id="users-component">
-        <table class="table table-striped table-responsive-md">
+      <div>
+        <div class="align-items-center p-3 my-3 bg-light rounded">
+          <h6>Всего пользователей: {{ quantity }}</h6>
+        </div>
+
+
+        <v-select v-model='partitions'/>
+
+        <table class="table table-striped table-responsive-md table-hover">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -24,31 +31,31 @@
             </tr>
           </tbody>
         </table>
-        <footer>
-          <div class="footer">
-              <div class="container">
-                  <div class="row">
-                    <h6>Всего пользователей: {{ quantity }}</h6>
-                  </div>
-              </div>
-          </div>
-        </footer>
     </div>
 </template>
 <script>
 export default {
   name: 'UserList',
+  components: {
+    'v-select': () => import('@/components/Vselect.vue')
+  },
   props: {
     list: {
       type: Array,
       required: true
     }
   },
+  data: function() {
+    return {
+      partitions: [5, 10, 15]
+    }
+  },
   computed: {
     quantity() {
       return this.list.length
     }
-  }
+  },
+
 }
 </script>
 

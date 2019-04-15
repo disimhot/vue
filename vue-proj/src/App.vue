@@ -38,6 +38,14 @@
               class="nav-link"
               href="#">Добавить пользователя</a>
           </router-link>
+          <router-link
+            tag="li"
+            to="/about"
+            exact>
+            <a
+              class="nav-link"
+              href="#">About</a>
+          </router-link>
         </ul>
       </div>
     </nav>

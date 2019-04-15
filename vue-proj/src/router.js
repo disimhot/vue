@@ -1,11 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Users from '@/views/Users.vue'
-import About from '@/views/About.vue'
-import Main from '@/views/Main.vue'
-import EditUser from '@/views/EditUser.vue'
-
 Vue.use(Router)
 
 export default new Router({
@@ -13,26 +8,26 @@ export default new Router({
     {
       path: '/',
       name: 'main',
-      component: Main
+      component: () => import('@/views/Main.vue')
     },
     {
       path: '/users',
       name: 'Users',
-      component: Users
+      component: () => import('@/views/Users.vue')
     },
     {
       path: '/about',
       name: 'about',
-      component: About
+      component: () => import('@/views/About.vue')
     },
     {
       path: '/edit/:id',
       name: 'edit',
-      component: EditUser
+      component: () => import('@/views/EditUser.vue')
     },
     {
       path: '*',
-      component: Main
+      component: () => import('@/views/Main.vue')
     }
   ],
   linkActiveClass: 'active',
