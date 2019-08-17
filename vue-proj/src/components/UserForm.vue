@@ -63,7 +63,7 @@ export default {
     localUser: {
       deep: true,
       handler: 'updateUser'
-    }
+    },
   },
   mounted() {
     this.localUser = Object.assign({}, this.user)

@@ -1,11 +1,9 @@
 <template>
   <div>
     <h5 class="display-4">Edit user</h5>
-    <user-form v-if="user" v-model="user"/>
+    <user-form v-if="user" v-model="user" />
 
-    <button type="button" class="btn btn-primary" @click="saveUser">
-      Save
-    </button>
+    <button type="button" class="btn btn-primary" @click="saveUser">Save</button>
   </div>
 </template>
 
@@ -38,15 +36,19 @@ export default {
       axios
         .get(this.url)
         .then(response => response.data)
-        .then(user => { this.user = user })
+        .then(user => {
+          this.user = user
+        })
         .catch(error => {
           console.log('Error ' + error)
         })
     },
     saveUser() {
-        axios
+      axios
         .patch(this.url, this.user)
-        .then(() => { this.$router.push('/users') })
+        .then(() => {
+          this.$router.push('/users')
+        })
         .catch(error => {
           console.log('Error ' + error)
         })

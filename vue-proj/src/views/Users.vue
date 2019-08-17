@@ -2,6 +2,7 @@
     <div>
       <div class="alert alert-warning" role="alert" v-if="loading">Загрузка</div>
       <div class="alert alert-primary" role="alert" v-else-if="usersListEmpty">Пользователей в списке нет</div>
+
       <users-list :list="list" v-else></users-list>
     </div>
 </template>
