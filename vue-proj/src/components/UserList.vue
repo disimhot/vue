@@ -56,11 +56,8 @@ export default {
   },
   watch: {
     partition() {
-      this.setList();
+      this.page = 1;
     },
-    page() {
-      this.setList();
-    }
   },
   computed: {
     quantity() {

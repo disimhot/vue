@@ -8,9 +8,10 @@
       </li>
       <li
         class="page-item"
-        :class="{'active': page_item === page}"
+        :class="{'active': page_item === currentPage}"
         v-for="page_item in pages"
         :key="page_item"
+        @click="currentPage = page_item"
       >
         <a class="page-link" href="#">{{ page_item }}</a>
       </li>
@@ -40,14 +41,22 @@ export default {
     }
   },
   data: () => ({
-    pages: []
+    pages: [],
+    currentPage: '',
   }),
   watch: {
     pages_quantity() {
       this.setPages()
+    },
+    currentPage() {
+      this.$emit('input', this.currentPage)
+    },
+    page() {
+      this.currentPage = this.page;
     }
   },
   mounted() {
+    this.currentPage = this.page;
     this.setPages()
   },
   methods: {
@@ -55,8 +64,9 @@ export default {
       this.pages = [...Array(this.pages_quantity)].map((item, index) => {
         return (item = index + 1)
       })
-    }
-  }
+    },
+  },
+
 }
 </script>
 
