@@ -1,7 +1,9 @@
 <template>
   <nav aria-label="Page navigation">
     <ul class="pagination">
-      <li class="page-item">
+      <li class="page-item"
+      :class="{'disabled' : currentPage === 1}"
+      @click="setPreviousPage">
         <a class="page-link" href="#" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
         </a>
@@ -15,7 +17,11 @@
       >
         <a class="page-link" href="#">{{ page_item }}</a>
       </li>
-      <li class="page-item">
+      <li
+        class="page-item"
+        :class="{'disabled' : currentPage === pages_quantity}"
+        @click="setNextPage"
+      >
         <a class="page-link" href="#" aria-label="Next">
           <span aria-hidden="true">&raquo;</span>
         </a>
@@ -42,7 +48,7 @@ export default {
   },
   data: () => ({
     pages: [],
-    currentPage: '',
+    currentPage: ''
   }),
   watch: {
     pages_quantity() {
@@ -52,11 +58,11 @@ export default {
       this.$emit('input', this.currentPage)
     },
     page() {
-      this.currentPage = this.page;
+      this.currentPage = this.page
     }
   },
   mounted() {
-    this.currentPage = this.page;
+    this.currentPage = this.page
     this.setPages()
   },
   methods: {
@@ -65,8 +71,17 @@ export default {
         return (item = index + 1)
       })
     },
-  },
-
+    setPreviousPage() {
+       if (this.currentPage !== 1) {
+          this.currentPage -= 1;
+       }
+    },
+    setNextPage () {
+       if (this.currentPage !== this.pages_quantity) {
+          this.currentPage += 1;
+       }
+    }
+  }
 }
 </script>
 
