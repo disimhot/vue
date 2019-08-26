@@ -1,22 +1,6 @@
 {
   "users": [
     {
-      "id": 0,
-      "isActive": true,
-      "balance": "$3,386.07",
-      "picture": "http://placehold.it/128x128",
-      "age": 38,
-      "accessLevel": "guest",
-      "firstName": "1",
-      "lastName": "21",
-      "company": "RECRITUBE",
-      "email": "rosetta.becker@recritube.info",
-      "phone": "+7 (960) 432-2143",
-      "address": "739 Hooper Street, Joppa, Florida, 5518",
-      "about": "Consectetur laboris tempor do consectetur irure qui deserunt id Lorem laborum reprehenderit. Sit voluptate sunt nisi aute velit esse cillum qui. Quis laborum est et excepteur fugiat duis amet officia sint mollit excepteur eu. Consequat duis incididunt dolor irure velit dolor ea mollit. Ullamco anim aliqua minim nostrud est aute laborum nostrud nostrud dolore nisi. Cillum aute occaecat tempor excepteur nostrud dolor excepteur reprehenderit adipisicing nostrud sunt quis aliquip exercitation. Est ea quis deserunt esse sunt officia.",
-      "registered": "04.07.2015"
-    },
-    {
       "id": 1,
       "isActive": false,
       "balance": "$2,252.54",
@@ -471,7 +455,7 @@
       "picture": "http://placehold.it/128x128",
       "age": 28,
       "accessLevel": "user",
-      "firstName": "Dunn",
+      "firstName": "23452345",
       "lastName": "Norris",
       "company": "AUTOMON",
       "email": "dunn.norris@automon.io",

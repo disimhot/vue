@@ -64,13 +64,20 @@ export default {
       deep: true,
       handler: 'updateUser'
     },
+    user: {
+      deep: true,
+      handler: 'updateLocal'
+    }
   },
   mounted() {
-    this.localUser = Object.assign({}, this.user)
+    this.updateLocal();
   },
   methods: {
     updateUser() {
       this.$emit('input', Object.assign({}, this.localUser))
+    },
+    updateLocal() {
+      this.localUser = Object.assign({}, this.user)
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="form-group col-4">
     <select class="form-control" id="exampleFormControlSelect" v-model="value">
-      <option v-for="(option,index) in partitions" :key="index">{{ option }}</option>
+      <option v-for="option in partitions_page">{{ option }}</option>
     </select>
     <label for="exampleFormControlSelect">Выбрано элементов: {{ value }}</label>
   </div>
@@ -17,10 +17,13 @@ export default {
     partition: {
       type: Number,
       required: true
+    },
+    partitions_page: {
+      type: Array,
+      required: true
     }
   },
   data: () => ({
-    partitions: [5, 10, 15],
     value: ''
   }),
   mounted() {
@@ -33,6 +36,4 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>
+  

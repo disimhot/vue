@@ -4,6 +4,9 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 export default new Router({
+  linkActiveClass: 'active',
+  linkExactActiveClass: 'active',
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -26,11 +29,13 @@ export default new Router({
       component: () => import('@/views/EditUser.vue')
     },
     {
+      path: '/add',
+      name: 'add',
+      component: () => import('@/views/AddUser.vue')
+    },
+    {
       path: '*',
-      component: () => import('@/views/Main.vue')
+      component: () => import('@/views/NotFoundPage.vue')
     }
   ],
-  linkActiveClass: 'active',
-  linkExactActiveClass: 'active',
-  mode: 'history'
 })

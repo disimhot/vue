@@ -1,9 +1,13 @@
 <template>
   <div>
     <h5 class="display-4">Edit user</h5>
-    <user-form v-if="user" v-model="user" />
+    <div v-if="!loading">
+      <user-form v-model="user" />
+      <button type="button" class="btn btn-primary mr-5" @click="saveUser">Save</button>
+      <button type="button" class="btn btn-outline-danger" @click="deleteUser">Delete</button>
+    </div>
 
-    <button type="button" class="btn btn-primary" @click="saveUser">Save</button>
+    <div class="alert alert-warning" role="alert" v-else>Загрузка</div>
   </div>
 </template>
 
@@ -25,7 +29,10 @@ export default {
       return this.$route.params.id
     },
     url() {
-      return 'http://localhost:3004/users/' + this.id
+      return 'http://localhost:3000/users/' + this.id
+    },
+    loading() {
+      return (Object.keys(this.user).length === 0)
     }
   },
   mounted: function() {
@@ -52,10 +59,17 @@ export default {
         .catch(error => {
           console.log('Error ' + error)
         })
+    },
+    deleteUser() {
+      axios
+        .delete(this.url)
+        .then(() => {
+          this.$router.push('/users')
+        })
+        .catch(error => {
+          console.log('Error ' + error)
+        })
     }
   }
 }
 </script>
-
-<style>
-</style>

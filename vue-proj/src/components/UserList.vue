@@ -3,9 +3,7 @@
     <div class="align-items-center p-3 my-3 bg-light rounded">
       <h6>Всего пользователей: {{ quantity }}</h6>
     </div>
-
-    <v-select v-model="partition" />
-
+    <v-select v-model="partition" :partitions_page="partitions"/>
     <table class="table table-striped table-responsive-md table-hover">
       <thead>
         <tr>
@@ -30,9 +28,7 @@
         </tr>
       </tbody>
     </table>
-
   <pagination :pages_quantity="pages_quantity" v-model="page"/>
-
   </div>
 </template>
 <script>
@@ -51,7 +47,8 @@ export default {
   data: function() {
     return {
       partition: 10,
-      page: 1
+      page: 1,
+      partitions: [5, 10, 15]
     }
   },
   watch: {

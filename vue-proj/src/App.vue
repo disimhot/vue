@@ -8,7 +8,7 @@
         exact>
         <a
           class="navbar-brand"
-          href="#">Vue course app</a>
+          >Vue course app</a>
       </router-link>
       <div
         class="collapse navbar-collapse"
@@ -20,7 +20,7 @@
             exact>
             <a
               class="nav-link"
-              href="#">Главная</a>
+              >Главная</a>
           </router-link>
           <router-link
             tag="li"
@@ -28,7 +28,7 @@
             exact>
             <a
               class="nav-link"
-              href="#">Список пользователей</a>
+              >Список пользователей</a>
           </router-link>
           <router-link
             tag="li"
@@ -36,7 +36,7 @@
             exact>
             <a
               class="nav-link"
-              href="#">Добавить пользователя</a>
+              >Добавить пользователя</a>
           </router-link>
           <router-link
             tag="li"
@@ -44,7 +44,7 @@
             exact>
             <a
               class="nav-link"
-              href="#">About</a>
+              >About</a>
           </router-link>
         </ul>
       </div>
@@ -59,10 +59,6 @@
   </div>
 </template>
 
-<style scoped>
-li {
-  list-style-type: none;
-}
-</style>
+
 
 

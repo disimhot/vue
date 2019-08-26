@@ -2,7 +2,7 @@
   <nav aria-label="Page navigation">
     <ul class="pagination">
       <li class="page-item"
-      :class="{'disabled' : currentPage === 1}"
+      :class="{disabled : currentPage === 1}"
       @click="setPreviousPage">
         <a class="page-link" href="#" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
@@ -10,16 +10,16 @@
       </li>
       <li
         class="page-item"
-        :class="{'active': page_item === currentPage}"
-        v-for="page_item in pages"
+        :class="{active : page_item === currentPage}"
+        v-for="page_item in pages_quantity"
         :key="page_item"
-        @click="currentPage = page_item"
+        @click="setAnyPage(page_item)"
       >
         <a class="page-link" href="#">{{ page_item }}</a>
       </li>
       <li
         class="page-item"
-        :class="{'disabled' : currentPage === pages_quantity}"
+        :class="{disabled : currentPage === pages_quantity}"
         @click="setNextPage"
       >
         <a class="page-link" href="#" aria-label="Next">
@@ -51,9 +51,6 @@ export default {
     currentPage: ''
   }),
   watch: {
-    pages_quantity() {
-      this.setPages()
-    },
     currentPage() {
       this.$emit('input', this.currentPage)
     },
@@ -63,14 +60,9 @@ export default {
   },
   mounted() {
     this.currentPage = this.page
-    this.setPages()
+
   },
   methods: {
-    setPages() {
-      this.pages = [...Array(this.pages_quantity)].map((item, index) => {
-        return (item = index + 1)
-      })
-    },
     setPreviousPage() {
        if (this.currentPage !== 1) {
           this.currentPage -= 1;
@@ -80,10 +72,10 @@ export default {
        if (this.currentPage !== this.pages_quantity) {
           this.currentPage += 1;
        }
+    },
+    setAnyPage(page) {
+      this.currentPage = page;
     }
   }
 }
 </script>
-
-<style>
-</style>
