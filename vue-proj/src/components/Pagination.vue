@@ -2,7 +2,7 @@
   <nav aria-label="Page navigation">
     <ul class="pagination">
       <li class="page-item"
-      :class="{disabled : currentPage === 1}"
+      :class="{disabled : page === 1}"
       @click="setPreviousPage">
         <a class="page-link" href="#" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
@@ -10,7 +10,7 @@
       </li>
       <li
         class="page-item"
-        :class="{active : page_item === currentPage}"
+        :class="{active : page_item === page}"
         v-for="page_item in pages_quantity"
         :key="page_item"
         @click="setAnyPage(page_item)"
@@ -19,7 +19,7 @@
       </li>
       <li
         class="page-item"
-        :class="{disabled : currentPage === pages_quantity}"
+        :class="{disabled : page === pages_quantity}"
         @click="setNextPage"
       >
         <a class="page-link" href="#" aria-label="Next">
@@ -48,33 +48,20 @@ export default {
   },
   data: () => ({
     pages: [],
-    currentPage: ''
   }),
-  watch: {
-    currentPage() {
-      this.$emit('input', this.currentPage)
-    },
-    page() {
-      this.currentPage = this.page
-    }
-  },
-  mounted() {
-    this.currentPage = this.page
-
-  },
   methods: {
     setPreviousPage() {
-       if (this.currentPage !== 1) {
-          this.currentPage -= 1;
+       if (this.page !== 1) {
+          this.$emit('input', (this.page - 1))
        }
     },
     setNextPage () {
-       if (this.currentPage !== this.pages_quantity) {
-          this.currentPage += 1;
+       if (this.page !== this.pages_quantity) {
+          this.$emit('input', (this.page + 1))
        }
     },
     setAnyPage(page) {
-      this.currentPage = page;
+      this.$emit('input', page)
     }
   }
 }

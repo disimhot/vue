@@ -1,7 +1,7 @@
 <template>
   <div class="form-group col-4">
     <select class="form-control mb-3" id="exampleFormControlSelect" :value="partition" @change="updateData($event.target.value)">
-      <option v-for="option in partitions_page" >{{ option }}</option>
+      <option v-for="option in partitions_page" :key="option">{{ option }}</option>
     </select>
     <label for="exampleFormControlSelect">Выбрано элементов: {{ partition }}</label>
   </div>
