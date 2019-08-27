@@ -10,7 +10,7 @@
       </li>
       <li
         class="page-item"
-        :class="{active : page_item === page}"
+        :class="{active : page === page_item}"
         v-for="page_item in pages_quantity"
         :key="page_item"
         @click="setAnyPage(page_item)"
@@ -46,22 +46,19 @@ export default {
       required: true
     }
   },
-  data: () => ({
-    pages: [],
-  }),
   methods: {
     setPreviousPage() {
        if (this.page !== 1) {
-          this.$emit('input', (this.page - 1))
+          this.setAnyPage(this.page - 1);
        }
     },
     setNextPage () {
        if (this.page !== this.pages_quantity) {
-          this.$emit('input', (this.page + 1))
+         this.setAnyPage(this.page + 1);
        }
     },
     setAnyPage(page) {
-      this.$emit('input', page)
+      this.$emit('input', page);
     }
   }
 }
