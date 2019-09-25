@@ -2,44 +2,29 @@
   <div>
     <div class="form-group">
       <label>Имя</label>
-      <input
-        type="text"
-        class="form-control"
-        v-model="localUser.firstName">
+      <input type="text" class="form-control" v-model="localUser.firstName" />
     </div>
 
     <div class="form-group">
       <label>Фамилия</label>
-      <input
-        type="text"
-        class="form-control"
-        v-model="localUser.lastName">
+      <input type="text" class="form-control" v-model="localUser.lastName" />
     </div>
-
+    <div class="form-group">
+      <label>День рождения</label>
+      <input type="text" class="form-control" v-model="localUser.birthdate" />
+    </div>
     <div class="form-group">
       <label>Баланс</label>
-      <input
-        type="text"
-        class="form-control"
-        v-model="localUser.balance">
+      <input type="text" class="form-control" v-model="localUser.balance" />
     </div>
-
     <div class="form-group">
       <label>Электронная почта</label>
-      <input
-        type="text"
-        class="form-control"
-        v-model="localUser.email">
+      <input type="text" class="form-control" v-model="localUser.email" />
     </div>
-
     <div class="form-group">
       <label>Адрес</label>
-      <input
-        type="text"
-        class="form-control"
-        v-model="localUser.address">
+      <input type="text" class="form-control" v-model="localUser.address" />
     </div>
-
   </div>
 </template>
 
@@ -47,7 +32,7 @@
 export default {
   name: 'UserForm',
   model: {
-    prop: 'user',
+    prop: 'user'
   },
   props: {
     user: {
@@ -64,13 +49,13 @@ export default {
       deep: true,
       handler: 'updateUser'
     },
-    user: {
-      deep: true,
-      handler: 'updateLocal'
-    }
+    // user: {
+    //   deep: true
+    //   handler: 'updateLocal'
+    // }
   },
   mounted() {
-    this.updateLocal();
+    this.updateLocal()
   },
   methods: {
     updateUser() {

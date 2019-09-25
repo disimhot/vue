@@ -2,7 +2,7 @@
   <div>
     <h5 class="display-4">Add user</h5>
     <div v-if="id">
-        <user-form  v-model="user" />
+        <user-form v-model="user" />
         <button type="button" class="btn btn-primary" @click="saveUser">Save</button>
     </div>
 
@@ -46,7 +46,7 @@ export default {
       axios
         .put(this.url + this.id, this.user)
         .then(() => {
-          this.$router.push('/users')
+          this.$router.push(`edit/${this.id}`)
         })
         .catch(error => {
           console.log('Error ' + error)

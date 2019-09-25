@@ -10,6 +10,7 @@
           <th scope="col">#</th>
           <th scope="col">Name</th>
           <th scope="col">Last name</th>
+          <th scope="col">Birthday</th>
           <th scope="col">Balance</th>
           <th scope="col">Email</th>
           <th scope="col">Address</th>
@@ -22,6 +23,7 @@
           </td>
           <td>{{ person.firstName }}</td>
           <td>{{ person.lastName }}</td>
+          <td>{{ person.birthdate }}</td>
           <td>{{ person.balance }}</td>
           <td>{{ person.email }}</td>
           <td>{{ person.address }}</td>
